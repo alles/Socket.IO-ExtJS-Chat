@@ -525,28 +525,41 @@
      */
     
     "builds": {
-        "classic": {
+        "desktop": {
             "toolkit": "classic",
             
-            "theme": "theme-triton",
+            "theme": "theme-crisp",
             
             "sass": {
                 "generated": {
-                    "var": "classic/sass/save.scss",
-                    "src": "classic/sass/save"
+                    "var": "desktop/sass/save.scss",
+                    "src": "desktop/sass/save"
                 }
             }
         },
 
-        "modern": {
+        "tablet": {
+            "toolkit": "modern",
+
+            "theme": "theme-material",
+
+            "sass": {
+                "generated": {
+                    "var": "tablet/sass/save.scss",
+                    "src": "tablet/sass/save"
+                }
+            }
+        },
+
+        "phone": {
             "toolkit": "modern",
             
-            "theme": "theme-triton",
+            "theme": "theme-material",
             
             "sass": {
                 "generated": {
-                    "var": "modern/sass/save.scss",
-                    "src": "modern/sass/save"
+                    "var": "phone/sass/save.scss",
+                    "src": "phone/sass/save"
                 }
             }
         }

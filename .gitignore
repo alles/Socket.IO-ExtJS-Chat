@@ -6,3 +6,7 @@ public/modern.json*
 public/build/*
 public/sass/example/bootstrap.js*
 public/sass/example/example.css
+.idea/*
+public/desktop.json*
+public/phone.json*
+public/tablet.json*
