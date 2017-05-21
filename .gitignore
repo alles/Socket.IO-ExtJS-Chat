@@ -4,3 +4,5 @@ public/bootstrap.*
 public/classic.json*
 public/modern.json*
 public/build/*
+public/sass/example/bootstrap.js*
+public/sass/example/example.css
