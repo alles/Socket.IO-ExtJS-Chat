@@ -1,0 +1,16 @@
+{
+  "name": "socketio-extjs-chat",
+  "version": "0.0.0",
+  "description": "A simple chat client using socket.io and extjs. Based to socket.io-chat example.",
+  "main": "index.js",
+  "author": "Aleksey Dmitrienko",
+  "private": true,
+  "license": "BSD",
+  "dependencies": {
+	"socket.io": "2.0.1",
+    "express": "4.13.4"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
