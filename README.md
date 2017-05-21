@@ -16,4 +16,5 @@ $ cd public
 $ sencha app build
 ...
 
+
 And point your browser to `http://localhost:3000`.
