@@ -1,2 +1,6 @@
 node_modules*
 npm-debug.log
+public/bootstrap.*
+public/classic.json*
+public/modern.json*
+public/build/*
