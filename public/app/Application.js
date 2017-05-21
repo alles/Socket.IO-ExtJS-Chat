@@ -5,15 +5,28 @@
  */
 Ext.define('Chat.Application', {
     extend: 'Ext.app.Application',
+
+    requires: [
+        'Ext.data.identifier.Uuid',
+
+        'Chat.core.*',
+        'Chat.component.*'
+    ],
     
     name: 'Chat',
 
-    stores: [
-        // TODO: add global / shared stores here
-    ],
-    
-    launch: function () {
-        // TODO - Launch the application
+    uuid: null,
+
+    init: function () {
+        window.app = this;
+
+        this.pipe = new Chat.core.Pipe();
+
+        this.uuid = localStorage.getItem('uuid');
+        if (!this.uuid) {
+            this.uuid = (new Ext.data.identifier.Uuid()).generate();
+            localStorage.setItem('uuid', this.uuid);
+        }
     },
 
     onAppUpdate: function () {

@@ -6,12 +6,18 @@
 Ext.application({
     name: 'Chat',
 
-    extend: 'Chat.Application'
+    extend: 'Chat.Application',
+
+    requires: [
+        'Chat.view.Layout'
+    ],
 
     // The name of the initial view to create. With the classic toolkit this class
     // will gain a "viewport" plugin if it does not extend Ext.Viewport. With the
     // modern toolkit, the main view will be added to the Viewport.
     //
+
+    mainView: 'Chat.view.Layout'
 	
     //-------------------------------------------------------------------------
     // Most customizations should be made to Chat.Application. If you need to

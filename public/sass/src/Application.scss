@@ -1,0 +1,54 @@
+.pLayout .messages {
+  .message {
+    position: relative;
+
+    .username {
+      text-align: right;
+      margin-right: 12px;
+      margin-bottom: -3px;
+      font-size: .8em;
+      padding: 0;
+    }
+
+    .text {
+      margin: 0 5px 5px 5px;
+      padding: 10px;
+      border-radius: 10px;
+      width: 75%;
+    }
+  }
+  .message.owner {
+    .username {
+      visibility: hidden;
+    }
+
+    .text {
+      float: left;
+      background-color: #afdc97;
+    }
+
+    .text:before {
+      content: url(images/message-left-corner.png);
+      position: relative;
+      left: -15px;
+    }
+  }
+
+  .message.another {
+    .text {
+      float: right;
+      background-color: #ebebeb;
+    }
+
+    .text:after {
+      content: url(images/message-right-corner.png);
+      position: absolute;
+      right: 0;
+      top: 25px;
+    }
+  }
+}
+
+.clear {
+  clear: both;
+}

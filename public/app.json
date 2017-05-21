@@ -22,7 +22,7 @@
      */
     "classpath": [
         "app",
-        "${toolkit.name}/src"
+        "${build.name}/src"
     ],
 
     /**
@@ -34,7 +34,7 @@
      */
     "overrides": [
         "overrides",
-        "${toolkit.name}/overrides"
+        "${build.name}/overrides"
     ],
 
     /**
@@ -121,7 +121,7 @@
          */
         "etc": [
             "sass/etc/all.scss",
-            "${toolkit.name}/sass/etc/all.scss"
+            "${build.name}/sass/etc/all.scss"
         ],
 
         /**
@@ -147,7 +147,7 @@
         "var": [
             "sass/var/all.scss",
             "sass/var",
-            "${toolkit.name}/sass/var"
+            "${build.name}/sass/var"
         ],
 
         /**
@@ -168,7 +168,7 @@
          */
         "src": [
             "sass/src",
-            "${toolkit.name}/sass/src"
+            "${build.name}/sass/src"
         ]
     },
 
@@ -485,12 +485,19 @@
             "output": "shared"
         },
         {
-            "path": "${toolkit.name}/resources"
+            "path": "${build.name}/resources"
         },
         {
             "path": "${build.id}/resources"
         }
     ],
+
+    "resource": {
+        "paths": [
+            "resources",
+            "${build.name}/resources"
+        ]
+    },
 
     /**
      * Directory path to store all previous production builds. Note that the content
