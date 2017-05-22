@@ -27,7 +27,7 @@ Ext.define('Chat.controller.Layout', {
     onSendMessage: function (field, e) {
         if (e.getKey() == e.ENTER) {
             var msg = field.getValue(),
-                username = this.lookupReference('username').getValue();
+                username = this.lookupReference('usernameField').getValue();
 
             this.getViewModel().getStore('messages').sendMessage(msg, username);
 
@@ -37,12 +37,13 @@ Ext.define('Chat.controller.Layout', {
         }
     },
 
-    onRefreshDataView: function (dv, data) {
-        if (data.length) {
+    onRefreshDataView: function () {
+        var store = this.getViewModel().getStore('messages');
+        if (store.count()) {
             var cnt = this.lookupReference('scrollContainer');
             if (!cnt.rendered) return;
 
-            cnt.getScrollable().scrollTo(Infinity, Infinity);
+            cnt.getScrollable().scrollTo(Infinity, Infinity, false);
         }
     }
 });

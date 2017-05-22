@@ -538,10 +538,10 @@
             "theme": "theme-crisp",
             
             "sass": {
-                "generated": {
+/*                "generated": {
                     "var": "desktop/sass/save.scss",
                     "src": "desktop/sass/save"
-                }
+                }*/
             }
         },
 
@@ -551,10 +551,10 @@
             "theme": "theme-material",
 
             "sass": {
-                "generated": {
+/*                "generated": {
                     "var": "tablet/sass/save.scss",
                     "src": "tablet/sass/save"
-                }
+                }*/
             }
         },
 
@@ -564,10 +564,10 @@
             "theme": "theme-material",
             
             "sass": {
-                "generated": {
+/*                "generated": {
                     "var": "phone/sass/save.scss",
                     "src": "phone/sass/save"
-                }
+                }*/
             }
         }
     },

@@ -22,7 +22,7 @@ Ext.define('Chat.view.Layout', {
         },
         items: [{
             xtype: 'textfield',
-            reference: 'username',
+            reference: 'usernameField',
             bind: {
                 emptyText: '{usernamePlaceHolder}',
                 value: '{username}'
