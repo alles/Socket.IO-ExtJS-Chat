@@ -20,13 +20,13 @@ Ext.define('Chat.Application', {
     init: function () {
         window.app = this;
 
-        this.pipe = new Chat.core.Pipe();
-
         this.uuid = localStorage.getItem('uuid');
         if (!this.uuid) {
             this.uuid = (new Ext.data.identifier.Uuid()).generate();
             localStorage.setItem('uuid', this.uuid);
         }
+
+        this.pipe = new Chat.core.Pipe();
     },
 
     onAppUpdate: function () {

@@ -4,6 +4,7 @@ Ext.define('Chat.view.Layout', {
 
     requires: [
         'Ext.plugin.Viewport',
+        'Ext.form.Label',
         'Ext.form.field.Text',
         'Ext.form.field.TextArea',
         'Ext.view.View',
@@ -26,6 +27,11 @@ Ext.define('Chat.view.Layout', {
                 emptyText: '{usernamePlaceHolder}',
                 value: '{username}'
             }
+        }, {
+            xtype: 'label',
+            bind: {
+                text: '{countUsers}'
+            }
         }]
     },
 
@@ -42,6 +48,7 @@ Ext.define('Chat.view.Layout', {
             xtype: 'container',
             scrollable: 'y',
             cls: 'scroll-container',
+            reference: 'scrollContainer',
             items: [{
                 xtype: 'dataview',
                 cls: 'messages',
@@ -51,13 +58,16 @@ Ext.define('Chat.view.Layout', {
                         '<div class="message {ownCls}">',
                             '<div class="username">{username}</div>',
                             '<div class="text">{text}</div>',
+                            '<div class="clear"></div>',
                         '</div>',
-                        '<div class="clear"></div>',
                     '</tpl>'
                 ].join(''),
                 itemSelector: 'div.message',
                 bind: {
                     store: '{messages}'
+                },
+                listeners: {
+                    refresh: 'onRefreshDataView'
                 }
             }]
         }],
@@ -68,8 +78,13 @@ Ext.define('Chat.view.Layout', {
                 disabled: '{!username}'
             },
             dock: 'bottom',
+            growMax: 150,
             grow: true,
-            growMin: 30
+            growMin: 30,
+            enterIsSpecial: true,
+            listeners: {
+                specialkey: 'onSendMessage'
+            }
         }]
     }]
 });

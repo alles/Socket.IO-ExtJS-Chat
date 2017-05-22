@@ -1,9 +1,12 @@
 // Setup basic express server
 var express = require('express');
+var jsonfile = require('jsonfile');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var port = process.env.PORT || 3000;
+var messages = [];
+var filename = 'messages.json';
 
 server.listen(port, function () {
   console.log('Server listening at port %d', port);
@@ -11,6 +14,22 @@ server.listen(port, function () {
 
 // Routing
 app.use(express.static(__dirname + '/public'));
+
+// Data
+jsonfile.readFile(filename, function (err, obj) {
+  if (err) {
+    jsonfile.writeFile(filename, messages, {spaces: 2}, function (err) {
+      if (err) {
+        console.error('Cannot create file %s. Error: %s', filename, err);
+      } else {
+        console.log('File %s create successful', filename);
+      }
+    });
+  } else {
+    console.log('Read data from %s file successful', filename);
+    messages = obj;
+  }
+});
 
 // Chatroom
 
@@ -21,11 +40,30 @@ io.on('connection', function (socket) {
 
   // when the client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
+    var oldId = data['id'];
+
+    data['id'] = messages.length ? messages[messages.length - 1]['id'] + 1 : 1;
+    messages.push(data);
+    jsonfile.writeFile(filename, messages, function (err) {
+      if (err) {
+        console.error('Cannot save %s file. Error: %s', filename, err);
+      }
+    });
+
+    socket.emit('new message id', {
+      oldId: oldId,
+      newId: data['id']
+    });
+
     // we tell the client to execute 'new message'
     socket.broadcast.emit('new message', {
       username: socket.username,
       message: data
     });
+  });
+
+  socket.on('get messages', function () {
+    socket.emit('messages', messages);
   });
 
   // when the client emits 'add user', this listens and executes

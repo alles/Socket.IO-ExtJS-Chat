@@ -7,8 +7,9 @@
   "private": true,
   "license": "BSD",
   "dependencies": {
-	"socket.io": "2.0.1",
-    "express": "4.13.4"
+    "express": "4.13.4",
+    "jsonfile": "^3.0.0",
+    "socket.io": "2.0.1"
   },
   "scripts": {
     "start": "node index.js"

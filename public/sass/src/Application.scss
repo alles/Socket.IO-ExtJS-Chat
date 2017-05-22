@@ -1,4 +1,8 @@
 .pLayout .messages {
+  .message.x-view-item-focused {
+    outline: 0 !important;
+  }
+
   .message {
     position: relative;
 
@@ -17,6 +21,7 @@
       width: 75%;
     }
   }
+
   .message.owner {
     .username {
       visibility: hidden;

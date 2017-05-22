@@ -6,26 +6,44 @@ Ext.define('Chat.store.Messages', {
     model: 'Chat.model.Message',
 
     proxy: {
-        type: 'hybrid',
+        type: 'memory',
         reader: {
-            type: 'json',
-            rootProperty: 'data'
+            type: 'json'
         }
     },
 
-    data: [
-        {id: 1, uuid: 'ec29bd66-e544-4280-ae6c-f1b725b2647d', username: 'test1', text: 'Тестовое свое сообщение'},
-        {id: 2, uuid: '', username: 'test2', text: 'Тестовое сообщение пользователя test2'},
-        {id: 3, uuid: '', username: 'test3', text: 'Тестовое сообщение пользователя test3'},
-        {id: 4, uuid: '', username: 'test4', text: 'Тестовое сообщение пользователя test4'},
-        {id: 5, uuid: '', username: 'test5', text: 'Тестовое сообщение пользователя test5'},
-        {id: 6, uuid: '', username: 'test6', text: 'Тестовое сообщение пользователя test6'},
-        {id: 7, uuid: 'ec29bd66-e544-4280-ae6c-f1b725b2647d', username: 'test123', text: 'Тестовое свое сообщение от пользователя test123'},
-        {id: 8, uuid: '', username: 'alles', text: 'Тестовое сообщение пользователя alles'},
-        {id: 9, uuid: '', username: 'alles123', text: 'Тестовое сообщение пользователя alles123'},
-        {id: 10, uuid: '', username: 'foo321', text: 'Тестовое сообщение пользователя foo321'},
-        {id: 11, uuid: '', username: 'bar321', text: 'Тестовое сообщение пользователя bar321'},
-        {id: 12, uuid: '', username: 'foobar321', text: 'Тестовое сообщение пользователя foobar321'},
-        {id: 13, uuid: '', username: 'barfoo123', text: 'Тестовое сообщение пользователя barfoo123'}
-    ]
+    autoSync: true,
+
+    sorters: [{
+        property: 'id',
+        direction: 'ASC'
+    }],
+
+    constructor: function () {
+        this.callParent(arguments);
+
+        app.pipe.on('new message', this.onAddMessage, this);
+        app.pipe.on('new message id', this.onGetMessageId, this);
+        app.pipe.on('messages', this.loadData, this);
+        app.pipe.send('get messages', '');
+    },
+
+    sendMessage: function (message, username) {
+        var data = {
+            id: Math.floor(Math.random() * (99999999 - 10000000) + 10000000),
+            username: username,
+            uuid: app.uuid,
+            text: message
+        };
+        this.add(data);
+        app.pipe.send('new message', data);
+    },
+
+    onGetMessageId: function (data) {
+        this.getById(data.oldId).set('id', data.newId);
+    },
+
+    onAddMessage: function (data) {
+        this.add(data.message);
+    }
 });

@@ -11,7 +11,10 @@ Ext.define('Chat.viewmodel.Layout', {
         chatTitleText: 'Simple chat',
         usernamePlaceHolder: 'Enter username',
         sendMessagePlaceHolder: 'Enter message',
-        username: ''
+        maskMessage: 'Connect was broken',
+
+        username: '',
+        countUsers: 0
     },
 
     stores: {
