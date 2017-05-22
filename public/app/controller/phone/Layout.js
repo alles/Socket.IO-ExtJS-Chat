@@ -10,8 +10,6 @@ Ext.define('Chat.controller.phone.Layout', {
             dv = this.lookupReference('scrollContainer');
         anim.on('animationend', this.onAnimationEnd, this);
         dv.on('painted', this.onRefreshDataView, this);
-
-        this.defaultHeightTextArea = this.lookupReference('sendMessageField').getHeight();
     },
 
     onKeyUpToUserName: function (field, e) {
