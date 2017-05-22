@@ -12,6 +12,14 @@ Ext.define('Chat.controller.phone.Layout', {
         dv.on('painted', this.onRefreshDataView, this);
     },
 
+    onDisconnect: function () {
+        var msg = this.getViewModel().get('maskMessage');
+        this.getView().mask({
+            xtype: 'loadmask',
+            message: msg
+        });
+    },
+
     onKeyUpToUserName: function (field, e) {
         if (field.getValue() && e.getKey() == e.ENTER) {
             this.getView().setActiveItem(1);

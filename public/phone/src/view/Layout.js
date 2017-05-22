@@ -6,6 +6,7 @@ Ext.define('Chat.view.Layout', {
         'Ext.TitleBar',
         'Ext.field.Text',
         'Ext.field.TextArea',
+        'Ext.LoadMask',
         'Ext.Label',
 
         'Chat.component.GrowTextArea',
