@@ -9,7 +9,8 @@ You need install [Sencha CMD](https://www.sencha.com/products/extjs/cmd-download
 ## How to use
 
 ```
-$ cd test-task/public
+$ git clone git@github.com:alles/Socket.IO-ExtJS-Chat simple-chat
+$ cd simple-chat/public
 $ sencha app build
 $ cd ..
 $ npm install
